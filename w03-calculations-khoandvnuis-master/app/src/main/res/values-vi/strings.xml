@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">W03-May Tinh</string>
+    <string name="equals">Bang</string>
+    <string name="add">Cong</string>
+    <string name="sub">Tru</string>
+    <string name="mul">Nhan</string>
+    <string name="div">Chia</string>
+</resources>

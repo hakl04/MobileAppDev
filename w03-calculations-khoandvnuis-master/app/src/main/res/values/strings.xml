@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">W03-Calculations</string>
+    <string name="equals">equals</string>
+    <string name="add">Add</string>
+    <string name="sub">Subtract</string>
+    <string name="mul">Multiply</string>
+    <string name="div">Divide</string>
+</resources>
