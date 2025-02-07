@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Trò chơi leo trèo</string>
+    <string name="climb">Trèo</string>
+    <string name="fall">Ngã</string>
+    <string name="reset">Chơi lại</string>
+    <string name="hold">Điểm Bám</string>
+    <string name="score">Điểm</string>
+</resources>

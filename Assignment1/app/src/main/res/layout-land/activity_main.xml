@@ -9,10 +9,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="8dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="5dp">
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="5dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -41,35 +42,11 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="0"
+                    android:textFontWeight="9"
                     android:textSize="60sp" />
-
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
-        <Button
-            android:id="@+id/btnClimb"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:layout_weight="1"
-            android:text="Climb" />
-
-        <Button
-            android:id="@+id/btnFall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:layout_weight="1"
-            android:text="Fall" />
-
-        <Button
-            android:id="@+id/btnReset"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:layout_weight="1"
-            android:text="Reset" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,8 +54,30 @@
             android:layout_margin="12dp"
             android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/btnClimb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:text="Climb" />
+
+            <Button
+                android:id="@+id/btnFall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:text="Fall" />
+
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:text="Reset" />
         </LinearLayout>
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

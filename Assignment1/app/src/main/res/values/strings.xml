@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">ClimbingApp</string>
+    <string name="app_name">Climbing App</string>
+    <string name="climb">Climb</string>
+    <string name="fall">Fall</string>
+    <string name="reset">Reset</string>
+    <string name="hold">Hold</string>
+    <string name="score">Score</string>
 </resources>
