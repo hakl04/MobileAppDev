@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Assignment2</string>
+    <string name="not_rented">Not Rented</string>
+    <string name="months_left"> Months Left</string>
+</resources>

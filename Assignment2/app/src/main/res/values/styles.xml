@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <style name="instrument_image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+
+    <style name="icon">
+        <item name="android:layout_width">24sp</item>
+        <item name="android:layout_height">32sp</item>
+    </style>
+
+    <style name="secondarytext">
+        <item name="android:textColor">@color/textnormal</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="chip">
+        <!--<item name="android:textColor">@color/textnormal</item>-->
+        <item name="android:layout_width">match_parent</item> <!-- Set background color -->
+        <item name="android:layout_height">60sp</item> <!-- Set background color -->
+        <item name="android:textSize">24sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:drawablePadding">0dp</item>
+        <item name="iconSize">24sp</item>
+        <item name="chipStrokeColor">@android:color/transparent</item> <!-- Remove border -->
+        <item name="android:textColor">@color/textlight</item> <!-- Remove border -->
+        <item name="chipBackgroundColor">@color/unchecked</item> <!-- Remove border -->
+        <!--<item name="chipBackgroundColor">@{chip.isChecked ? @color.}</item>--> <!-- Set background color -->
+        <!--<item name="android:padding">8dp</item>-->
+    </style>
+</resources>
