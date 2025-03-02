@@ -19,17 +19,13 @@
     </style>
 
     <style name="chip">
-        <!--<item name="android:textColor">@color/textnormal</item>-->
-        <item name="android:layout_width">match_parent</item> <!-- Set background color -->
-        <item name="android:layout_height">60sp</item> <!-- Set background color -->
-        <item name="android:textSize">24sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60sp</item>
+        <item name="android:textSize">24sp</item> <!-- Set text size -->
         <item name="android:textAlignment">center</item>
         <item name="android:drawablePadding">0dp</item>
-        <item name="iconSize">24sp</item>
         <item name="chipStrokeColor">@android:color/transparent</item> <!-- Remove border -->
-        <item name="android:textColor">@color/textlight</item> <!-- Remove border -->
-        <item name="chipBackgroundColor">@color/unchecked</item> <!-- Remove border -->
-        <!--<item name="chipBackgroundColor">@{chip.isChecked ? @color.}</item>--> <!-- Set background color -->
-        <!--<item name="android:padding">8dp</item>-->
+        <item name="android:textColor">@color/textlight</item> <!-- Change text color -->
+        <item name="chipBackgroundColor">@color/unchecked</item> <!-- Set initial background color -->
     </style>
 </resources>

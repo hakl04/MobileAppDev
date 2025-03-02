@@ -14,27 +14,27 @@ data class Instrument (
      var accessories: Map<String, Int>
 ) : Parcelable {
      constructor(parcel: Parcel) : this(
-         parcel.readString().toString(),
+         parcel.readString().toString(),  // Read each property of the data class
           parcel.readInt(),
           parcel.readInt(),
           parcel.readInt(),
           parcel.readFloat(),
          parcel.readString().toString(),
-          parcel.readBundle().let { bundle ->
+          parcel.readBundle().let { bundle ->  //Use Bundle to get the accessories Map
                bundle?.keySet()?.associateWith { key -> bundle.getInt(key) } ?: emptyMap()
           }
      ) {
      }
 
      override fun writeToParcel(parcel: Parcel, flags: Int) {
-          parcel.writeString(name)
+          parcel.writeString(name)  // Write each property of the data class
           parcel.writeInt(image)
           parcel.writeInt(cost)
           parcel.writeInt(months)
           parcel.writeFloat(rating)
           parcel.writeString(description)
           val bundle = Bundle()
-          for ((key, value) in accessories) {
+          for ((key, value) in accessories) {  // Use Bundle to write the accessories Map
                bundle.putInt(key, value)
           }
           parcel.writeBundle(bundle)
