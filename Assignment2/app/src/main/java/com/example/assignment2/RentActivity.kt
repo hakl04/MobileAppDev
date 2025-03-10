@@ -11,6 +11,7 @@ import android.media.SoundPool
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -43,7 +44,6 @@ class RentActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var instrumentImage : ImageView;
     private lateinit var duration : EditText;
     private lateinit var chipGroup : List<Chip>;
-    private lateinit var ratingBar : RatingBar;
     private var credit : Int = 0;
     private var error = "";
     private var perMonth : Int = 0;
@@ -56,15 +56,11 @@ class RentActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        /*setContentView(R.layout.activity_rent)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }*/
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_rent)
-        instrumentImage = findViewById(R.id.imageView)
-        ratingBar = findViewById(R.id.ratingBar)
+        //initialize the binding that control the instrument being displayed
+
+        instrumentImage = findViewById(R.id.imageView) // Initialize the Views in the layout
         duration = findViewById(R.id.duration)
 
         btn_cancel = findViewById(R.id.btn_cancel)
@@ -73,14 +69,14 @@ class RentActivity : AppCompatActivity(), View.OnClickListener {
         creditView = findViewById(R.id.credit)
         total_cost = findViewById(R.id.total_cost)
 
-        chipGroup = listOf(
+        chipGroup = listOf(  // Populate the chip list for accessories select
             findViewById(R.id.chip),
             findViewById(R.id.chip2),
             findViewById(R.id.chip3)
         );
 
 
-        val audioAttributes = AudioAttributes.Builder()
+        val audioAttributes = AudioAttributes.Builder() // Initialize the sound pool
             .setUsage(AudioAttributes.USAGE_MEDIA)
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
             .build()
@@ -90,45 +86,48 @@ class RentActivity : AppCompatActivity(), View.OnClickListener {
             .setAudioAttributes(audioAttributes)
             .build()
 
-        successSound = soundPool.load(this, R.raw.success, 1)
+        successSound = soundPool.load(this, R.raw.success, 1) // Initialize the sound effects
         errorSound = soundPool.load(this, R.raw.error, 1)
         buttonSound = soundPool.load(this, R.raw.button, 1)
 
-        val stars = binding.ratingBar.progressDrawable as LayerDrawable
-        stars.getDrawable(2).setColorFilter(ContextCompat.getColor(this, R.color.star), PorterDuff.Mode.SRC_ATOP)
-
-        val intent = getIntent();
-        val tempInstrument = intent.getParcelableExtra("instrument", Instrument::class.java)
-        val tempCredit = intent.getIntExtra("credit", 0)
+        val intent = getIntent(); // Get the intent that was used in Main Activity
+        val tempInstrument = intent.getParcelableExtra("instrument", Instrument::class.java) // Get the Instrument parcelable object passed from Main Activity
+        val tempCredit = intent.getIntExtra("credit", 0) // Get the current credit
         credit = tempCredit;
         creditView.setText(credit.toString());
-        if(tempInstrument != null){
+
+        if(tempInstrument != null){  // Set the data binding to the selected instrument
             instrument = tempInstrument;
             perMonth = instrument.cost;
             binding.instrument = instrument;
             instrumentImage.setImageResource(instrument.image)
+
+            Log.d("Instrument", "Setted Instrument")
         }
         else{
-            Toast.makeText(this, "Null", Toast.LENGTH_SHORT).show();
+            Log.d("Instrument", "Null instrument")
         }
 
-        btn_cancel.setOnClickListener(this)
+        btn_cancel.setOnClickListener(this)  // Set the on click listener event of the buttons to this class
         btn_save.setOnClickListener(this)
 
-        duration.addTextChangedListener(object : TextWatcher {
+        duration.addTextChangedListener(object : TextWatcher {  // TextWatcher to run whenever the diration text is changed
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                Log.d("Duration Text", "Before changed")
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                Log.d("Duration Text", "On changed")
             }
 
             override fun afterTextChanged(s: Editable?) {
-                updateUI();
+                Log.d("Duration Text", "After changed")
+                updateUI(); // Update the UI with the new duration text value
             }
         })
 
         for (i in 0 until chipGroup.count()) {
-            chipGroup[i].setOnCheckedChangeListener { _, isChecked ->
+            chipGroup[i].setOnCheckedChangeListener { _, isChecked ->  // Set check change listener for each of the chip in the chip list
                 if (isChecked) {
                     chipGroup[i].setChipBackgroundColorResource(R.color.secondary) // Set checked color
                     chipGroup[i].setTextColor(ContextCompat.getColor(this, R.color.white)); // Set checked text color
@@ -138,18 +137,27 @@ class RentActivity : AppCompatActivity(), View.OnClickListener {
                     chipGroup[i].setTextColor(ContextCompat.getColor(this, R.color.textlight));// Set unckecked text color
                     perMonth -= instrument.accessories.values.toIntArray()[i]; // Reduce from cost per month
                 }
-                soundPool.play(buttonSound, 1f, 1f, 0, 0, 1f)
+                soundPool.play(buttonSound, 1f, 1f, 0, 0, 1f) // Play button sound when chip is clicked
                 updateUI();
             }
         }
     }
 
-    fun updateUI(){
+    @SuppressLint("ResourceAsColor")
+    fun updateUI(){  // Update UI when needed
         if(!duration.text.toString().equals("")){
-            total_cost.setText((perMonth * duration.text.toString().toInt()).toString())
+            val cost = perMonth * duration.text.toString().toInt() // Recalculate the total cost
+            total_cost.setText(cost.toString())
+            if(cost <= credit) total_cost.setTextColor(ContextCompat.getColor(this, R.color.textsufficient)) // Set text to green if have sufficient credit
+            else total_cost.setTextColor(ContextCompat.getColor(this, R.color.textinsufficient)) // Set text to red if have insufficient credit
+
+            Log.d("Duration", "Duration not empty")
         }
         else{
-            total_cost.setText(0.toString())
+            total_cost.setText(0.toString()) // Set total cost to 0 if duration is not filled
+            total_cost.setTextColor(ContextCompat.getColor(this, R.color.textlight))
+
+            Log.d("Duration", "Duration empty")
         }
     }
 
@@ -158,29 +166,32 @@ class RentActivity : AppCompatActivity(), View.OnClickListener {
         when(v?.id){
             R.id.btn_save ->{
                 if(validate()){
-                    instrument.rating = ratingBar.rating;
-                    instrument.months = duration.text.toString().toInt();
+                    instrument.months += duration.text.toString().toInt();
 
                     intent.putExtra("updatedinstrument", instrument);
                         // Put the Parcelable Instrument Object to be received by Main Activity
 
-                    intent.putExtra("message", "Successfully Booked");
-                    intent.putExtra("cost", perMonth * duration.text.toString().toInt());
-                    setResult(RESULT_OK, intent);
+                    intent.putExtra("message", "Successfully Booked"); // Message for snack bar in Main Activity
+                    intent.putExtra("cost", perMonth * duration.text.toString().toInt()); // Put in cost to reduct in the Main Activity
+
+                    Log.d("Validation", "Valid")
+
+                    setResult(RESULT_OK, intent); // Set RESULT_OK and finish to return to MainActivity, triggering the getResult function
                     finish();
                 }
                 else{
                     showSnackBar(error, R.drawable.xmark);
                     soundPool.play(errorSound, 1f, 1f, 0, 0, 1f)
+
+                    Log.d("Validation", "Invalid: " + error)
                 }
             }
             R.id.btn_cancel ->{
-                intent.putExtra("message", "Cancelled");
-                setResult(RESULT_OK, intent);
+                intent.putExtra("message", "Cancelled"); // Set message for snack bar in Main Activity
+                setResult(RESULT_OK, intent); // Return to Main Activity
                 finish();
             }
         }
-        //soundPool.play(buttonSound, 1f, 1f, 0, 0, 1f)
     }
 
     fun validate() : Boolean{
@@ -189,27 +200,27 @@ class RentActivity : AppCompatActivity(), View.OnClickListener {
             check(duration.text.toString().toInt() <= 0, "Duration cannot be 0")
             check(duration.text.toString().toInt() * instrument.cost > credit, "Insufficient credits")
         }
-        check(ratingBar.rating == 0f, "Rating cannot be empty")
+        //check(ratingBar.rating == 0f, "Rating cannot be empty")
         return error.equals("");
     }
 
     fun check(condition : Boolean, message: String) : Boolean{
-        if(condition){
-            if(!error.equals("")){
+        if(condition){  // Check the condition of error
+            if(!error.equals("")){ // Break line if not the first error
                 error += "\n"
             }
-            error += "• " + message;
+            error += "• " + message; // Add the error message
         }
         return condition
     }
 
     @SuppressLint("RestrictedApi", "MissingInflatedId")
     fun showSnackBar(text : String, icon : Int){
-        val snackbarView = layoutInflater.inflate(R.layout.snackbar_layout, null)
-        val snackbarText : TextView = snackbarView.findViewById(R.id.snackbar_text)
+        val snackbarView = layoutInflater.inflate(R.layout.snackbar_layout, null)  // Use custom snack bar layout
+        val snackbarText : TextView = snackbarView.findViewById(R.id.snackbar_text) // Get the View in the custom snack bar layout
         val snackbarIcon : ImageView = snackbarView.findViewById(R.id.snackbar_icon)
-        snackbarText.text = text;
-        snackbarIcon.setImageResource(icon);
+        snackbarText.text = text; //Set the text of the snack bar
+        snackbarIcon.setImageResource(icon);  // Set the snack bar icon
 
         val snackbar = Snackbar.make(btn_cancel, "", Snackbar.LENGTH_LONG)
         val snackbarLayout = snackbar.view as Snackbar.SnackbarLayout

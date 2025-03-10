@@ -15,5 +15,8 @@
     <color name="textbadge">#643F24</color>
     <color name="textunchecked">#4B4B4B</color>
 
+    <color name="textsufficient">#529500</color>
+    <color name="textinsufficient">#9B1100</color>
+
     <color name="star">#FFD400</color>
 </resources>

@@ -21,7 +21,7 @@
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="88dp"
+                android:layout_height="90dp"
                 android:background="@color/background"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -99,6 +99,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         app:cardBackgroundColor="#F8F8F8"
                         app:cardCornerRadius="20dp">
 
@@ -119,15 +120,15 @@
                                     android:orientation="horizontal">
 
                                     <androidx.cardview.widget.CardView
-                                        android:layout_width="150sp"
-                                        android:layout_height="150sp"
+                                        android:layout_width="160sp"
+                                        android:layout_height="160sp"
                                         app:cardBackgroundColor="#DDDDDD"
                                         app:cardCornerRadius="10dp"
                                         app:cardElevation="0dp">
 
                                         <androidx.cardview.widget.CardView
-                                            android:layout_width="148dp"
-                                            android:layout_height="148dp"
+                                            android:layout_width="158dp"
+                                            android:layout_height="158dp"
                                             android:layout_margin="1dp"
                                             app:cardCornerRadius="9dp"
                                             app:cardElevation="0dp">
@@ -143,8 +144,9 @@
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
+                                        android:layout_height="wrap_content"
                                         android:layout_marginLeft="12dp"
+                                        android:layout_marginTop="6sp"
                                         android:layout_weight="1"
                                         android:orientation="vertical">
 
@@ -226,7 +228,7 @@
                                     style="@style/secondarytext"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="15dp"
+                                    android:layout_marginTop="18dp"
                                     android:text="Duration (Months):" />
 
                                 <EditText
@@ -234,14 +236,16 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:ems="10"
-                                    android:inputType="numberSigned" />
+                                    android:inputType="numberSigned"
+                                    android:textColor="@color/textlight"
+                                    android:textSize="24sp" />
 
                                 <TextView
                                     android:id="@+id/textView12"
                                     style="@style/secondarytext"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_marginTop="12dp"
                                     android:text="Accessories:" />
 
                                 <LinearLayout
@@ -352,26 +356,11 @@
 
                                 </LinearLayout>
 
-                                <TextView
-                                    android:id="@+id/textView3"
-                                    style="@style/secondarytext"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:text="Rating:" />
-
-                                <RatingBar
-                                    android:id="@+id/ratingBar"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:numStars="5"
-                                    android:rating="0"
-                                    android:stepSize="0.5" />
-
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_marginTop="10dp"
+                                    android:layout_marginTop="25dp"
+                                    android:layout_marginBottom="5dp"
                                     android:layout_weight="1"
                                     android:orientation="horizontal">
 
@@ -398,7 +387,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="0"
-                                        android:text="0" />
+                                        android:text="0"
+                                        android:textColor="@color/textlight" />
 
                                 </LinearLayout>
 
