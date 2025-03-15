@@ -14,8 +14,8 @@ import com.google.android.material.snackbar.Snackbar
 
 class NewActivity : AppCompatActivity() {
     lateinit var lsStudent : RecyclerView
-    var studentList : Array<String> = arrayOf("Hakl04" , "Kta87m", "freeing")
-    var imageList : Array<Int> = arrayOf(R.drawable.something , R.drawable.avatar, R.drawable.discord)
+    //var studentList : Array<String> = arrayOf("Hakl04" , "Kta87m", "freeing")
+    //var imageList : Array<Int> = arrayOf(R.drawable.something , R.drawable.avatar, R.drawable.discord)
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +31,13 @@ class NewActivity : AppCompatActivity() {
 
         lsStudent.layoutManager = LinearLayoutManager(this)
         lsStudent.setHasFixedSize(true);
-        val data = ArrayList<DataClass>()
-        for(i in 0 until studentList.size){
-            data.add(DataClass(studentList[i], imageList[i]))
-        }
+        val data = listOf(
+            DataClass("Book1", 4.5f, R.drawable.book1),
+            DataClass("Book2", 4.1f, R.drawable.book2),
+            DataClass("Book3", 3.6f, R.drawable.book3),
+            DataClass("Book4", 2.8f, R.drawable.book4),
+            DataClass("Book5", 3.9f, R.drawable.book5)
+        )
 
         val adapter = RecyclerViewAdapter(data)
         lsStudent.setAdapter(adapter);

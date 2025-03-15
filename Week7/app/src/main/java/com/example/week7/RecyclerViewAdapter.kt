@@ -18,7 +18,8 @@ class RecyclerViewAdapter(private val mList : List<DataClass>) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: RecyclerViewAdapter.ViewHolderClass, position: Int) {
         val Elements = mList[position];
-        holder.textView.setText((Elements.name))
+        holder.name.setText((Elements.name))
+        holder.rating.setText("Rating: " + (Elements.rating.toString()))
         holder.imageView.setImageResource(Elements.image);
     }
 
@@ -27,7 +28,8 @@ class RecyclerViewAdapter(private val mList : List<DataClass>) : RecyclerView.Ad
     }
 
     class ViewHolderClass(view : View) : RecyclerView.ViewHolder(view){
-        val textView : TextView = view.findViewById(R.id.text)
+        val name : TextView = view.findViewById(R.id.name)
+        val rating : TextView = view.findViewById(R.id.rating)
         val imageView : ImageView = view.findViewById(R.id.imageView)
     }
 }
