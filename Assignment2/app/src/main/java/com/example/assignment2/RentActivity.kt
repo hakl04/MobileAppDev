@@ -35,7 +35,7 @@ import com.google.android.material.snackbar.Snackbar
 
 
 class RentActivity : AppCompatActivity(), View.OnClickListener {
-    private lateinit var instrument : Instrument;
+    private lateinit var instrument : Instrument;   // Declaring the properties
     private lateinit var creditView : TextView;
     private lateinit var total_cost : TextView;
     private lateinit var btn_cancel : Button;
@@ -198,7 +198,7 @@ class RentActivity : AppCompatActivity(), View.OnClickListener {
         error = "";
         if(!check(duration.text.toString().equals(""), "Duration cannot be empty")){
             check(duration.text.toString().toInt() <= 0, "Duration cannot be 0")
-            check(duration.text.toString().toInt() * instrument.cost > credit, "Insufficient credits")
+            check(duration.text.toString().toInt() * perMonth > credit, "Insufficient credits")
         }
         //check(ratingBar.rating == 0f, "Rating cannot be empty")
         return error.equals("");

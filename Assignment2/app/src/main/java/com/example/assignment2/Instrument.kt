@@ -5,7 +5,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Instrument (
-     var name : String,
+     var name : String,  // Declaring the dât class properties
      var image : Int,
      var cost : Int,
      var months : Int,

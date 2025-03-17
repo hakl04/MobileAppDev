@@ -27,36 +27,28 @@ class MainActivityTest3 {
 
     @Test
     fun mainActivityTest3() {
-
+        onView(allOf(withId(R.id.btn_next), withText("Next"), isDisplayed()))
+            .perform(click())
         // Click the Rent button
         onView(allOf(withId(R.id.btn_rent), withText("Rent"), isDisplayed()))
             .perform(click())
 
-        // Input duration
-        onView(withId(R.id.duration))
-            .perform(replaceText("90"), closeSoftKeyboard())
+        // Ensure that RentActivity is displayed
+        onView(withId(R.id.duration)).check(matches(isDisplayed()))
 
-        // Press back to return to the previous screen
-        pressBack()
+        // Input duration in RentActivity
+        onView(withId(R.id.duration)).perform(replaceText("9"), closeSoftKeyboard())
 
-        // Select chips
-        onView(allOf(withId(R.id.chip2), withText("Stand"), isDisplayed()))
-            .perform(click())
-
-        onView(allOf(withId(R.id.chip3), withText("Extra String"), isDisplayed()))
-            .perform(click())
-
-        // Click the Save button
+        // Click Save button in RentActivity
         onView(allOf(withId(R.id.btn_save), withText("Save"), isDisplayed()))
             .perform(click())
 
-        // Click the Save button again if required (check if this is intentional)
-        onView(allOf(withId(R.id.btn_save), withText("Save"), isDisplayed()))
-            .perform(click())
+        // Ensure MainActivity is displayed again
+        onView(withId(R.id.credit)).check(matches(isDisplayed()))
 
-        // Verify the total cost
-        onView(allOf(withId(R.id.total_cost), withText("2250"), isDisplayed()))
-            .check(matches(withText("2250")))
+        // Check the credit text value
+        onView(allOf(withId(R.id.credit), withText("415"), isDisplayed()))
+            .check(matches(withText("415")))
     }
 
     private fun childAtPosition(

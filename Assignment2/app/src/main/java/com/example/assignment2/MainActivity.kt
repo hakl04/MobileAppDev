@@ -28,7 +28,7 @@ import com.google.android.material.snackbar.Snackbar
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    private lateinit var instruments : MutableList<Instrument>;
+    private lateinit var instruments : MutableList<Instrument>;  // Declaring the properties
     private lateinit var btn_next : Button;
     private lateinit var btn_previous : Button;
     private lateinit var btn_rent : Button;
