@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background">#EDEDED</color>
+    <color name="primary">#3F63BD</color>
+    <color name="secondary">#4587D1</color>
+    <color name="third">#D6E4ED</color>
+    <color name="red">#D94E4E</color>
+    <color name="checked">#EDBA97</color>
+    <color name="unchecked">#DEDEDE</color>
+    <!--<color name="primary">#FF795548</color>-->
+    <color name="textfull">#FF000000</color>
+    <color name="textnormal">#5F5F5F</color>
+    <color name="textlight">#FF808080</color>
+    <color name="textbadge">#643F24</color>
+    <color name="textunchecked">#4B4B4B</color>
+
+    <color name="textsufficient">#529500</color>
+    <color name="textinsufficient">#9B1100</color>
+
+    <color name="star">#FFD400</color>
+</resources>
